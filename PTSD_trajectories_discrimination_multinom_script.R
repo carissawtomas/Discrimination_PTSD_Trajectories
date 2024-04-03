@@ -8,6 +8,7 @@ library(dplyr)
 library(tidyr)
 library(stargazer)
 library(stargazer)
+library(nnet)
 
 # PTSD SYMPTOM TRAJECTORIES VIA LCMM ####
 ### 1) ED DISCHARGE --- iSTAR ####
@@ -56,7 +57,7 @@ d5_istar3_2<-gridsearch(minit=d1_istar3_2, maxiter=100, rep=50, lcmm(PCL~TIME + 
 d6_istar3_2<-gridsearch(minit=d1_istar3_2, maxiter=100, rep=50, lcmm(PCL~TIME + TIME2, random=~TIME + TIME2, subject="ID", mixture=~TIME + TIME2, ng=6, idiag=FALSE, data=iSTAR_reshape_PCL_timepoints, link="linear"))
 
 # COMPARE MODEL FIT - QUADRATIC TERM
-#summarytable(d1_istar3_2, d2_istar3_2, d3_istar3_2, d4_istar3_2, d5_istar3_2, d6_istar3_2, which=c("G", "loglik", "conv", "npm", "AIC", "BIC", "SABIC", "entropy", "%class"))
+summarytable(d1_istar3_2, d2_istar3_2, d3_istar3_2, d4_istar3_2, d5_istar3_2, d6_istar3_2, which=c("G", "loglik", "conv", "npm", "AIC", "BIC", "SABIC", "entropy", "%class"))
 
 # "iSTAR" DATASET IS DATA FROM PARENT STUDY OF HOSPITALIZED PARTICIPANTS
 # FILTER TO RETAIN ONLY BLACK PARTICIPANTS 
